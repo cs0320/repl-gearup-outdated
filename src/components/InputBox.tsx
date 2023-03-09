@@ -6,7 +6,7 @@ interface InputBoxProps {
 }
 
 export default function InputBox(props: InputBoxProps) {
-  // TODO: Add a state variable for the textbox contents
+  const [textbox, setTextbox] = useState("");
 
   /**
    * Handles the submit button being clicked or the enter key being pressed!
@@ -14,17 +14,28 @@ export default function InputBox(props: InputBoxProps) {
    * command logic, but for now it just adds the text to the history box.
    */
   function handleSubmit() {
-    // TODO: Add the text from the textbox to the history
-    // Hint: You can use the spread operator (...) to add to an array
-    // TODO: Clear the textbox
+    props.setHistory([...props.history, textbox]);
+    setTextbox("");
   }
 
   return (
     <div className="repl-input">
-      {/* TODO: Make this input box sync with the state variable */}
-      <input type="text" className="repl-command-box" />
-      {/* TODO: Make this button call handleSubmit when clicked */}
-      <button className="repl-button">Submit</button>
+      {/* The text box, which keeps its contents synced with the textbox state */}
+      <input
+        type="text"
+        className="repl-command-box"
+        onChange={(e) => setTextbox(e.target.value)}
+        value={textbox}
+        onKeyUp={(e) => {
+          if (e.key === "Enter") {
+            handleSubmit();
+          }
+        }}
+      />
+      {/* The submit button, which calls handleSubmit when clicked */}
+      <button className="repl-button" onClick={handleSubmit}>
+        Submit
+      </button>
     </div>
   );
 }

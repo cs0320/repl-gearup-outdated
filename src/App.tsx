@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "../styles/App.css";
 import Header from "./components/Header";
+import HistoryBox from "./components/HistoryBox";
+import InputBox from "./components/InputBox";
 
 function App() {
   // The data state is an array of strings, which is passed to our components
@@ -11,9 +13,9 @@ function App() {
     <div>
       <Header />
       <div className="repl">
-        {/* TODO: Add HistoryBox */}
+        <HistoryBox history={history} />
         <hr />
-        {/* TODO: Add InputBox */}
+        <InputBox history={history} setHistory={setHistory} />
       </div>
     </div>
   );
