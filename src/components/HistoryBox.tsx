@@ -5,8 +5,11 @@ interface HistoryBoxProps {
 function HistoryBox(props: HistoryBoxProps) {
   return (
     <div className="repl-history">
-      {/* TODO: Add a div for each command in the history */}
-      {/* Hint: You can use the map function to iterate over an array */}
+      {/* Map over the history array and display each item in a div */}
+      {props.history.map((item, index) => (
+        // You may eventually make this a component, but for now it's just a div
+        <div key={index}>{item}</div>
+      ))}
     </div>
   );
 }
